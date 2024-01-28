@@ -147,7 +147,12 @@ public class ContentLoader : MonoBehaviour
         scrollIndex++;
         if (scrollIndex == scrollOrder.Count)
         {
-            scrollOrder.Add(Random.Range(1, nbOfGames + 1));
+            int res = Random.Range(1, nbOfGames + 1);
+            while (res == scrollOrder[scrollIndex - 1])
+            {
+                res = Random.Range(1, nbOfGames + 1);
+            }
+            scrollOrder.Add(res);
         }
 
         contentPanelTransform.anchoredPosition = botPos;
