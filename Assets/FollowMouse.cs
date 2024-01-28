@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class FollowMouse : MonoBehaviour
 {
-
+    [SerializeField] private Canvas canvas;
     private void Start()
     {
         Cursor.visible = false;
@@ -13,6 +14,10 @@ public class FollowMouse : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.GetComponent<RectTransform>().anchoredPosition = (Vector2)Input.mousePosition;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+        canvas.transform as RectTransform, Input.mousePosition,
+        Camera.main,
+        out Vector2 pos);
+        transform.position = canvas.transform.TransformPoint(pos);
     }
 }
