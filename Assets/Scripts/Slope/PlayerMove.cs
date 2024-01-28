@@ -39,6 +39,6 @@ public class PlayerMove : MonoBehaviour
 
     float GetSpeedValue(float platforms)
     {
-        return platforms == 0 ? PlatformSpeedUp : (8 + 4*Mathf.Log(platforms) * PlatformSpeedUp);
+        return platforms == 0 ? PlatformSpeedUp : (8 + 4*Mathf.Log(4*platforms) * PlatformSpeedUp);
     }
 }

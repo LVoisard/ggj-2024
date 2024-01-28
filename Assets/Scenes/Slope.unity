@@ -379,7 +379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 589615653}
   LerpFactor: 0.05
-  CameraOffset: {x: 0, y: 2, z: -4}
+  CameraOffset: {x: 0, y: 4, z: -4}
 --- !u!1 &940523763
 GameObject:
   m_ObjectHideFlags: 0
