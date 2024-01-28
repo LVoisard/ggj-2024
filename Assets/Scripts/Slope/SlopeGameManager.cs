@@ -42,6 +42,22 @@ public class SlopeGameManager : MonoBehaviour
 
     public void SetupNewGame()
     {
+        DestroyAllPlatforms();
+
+        PlatformsCleared = 0;
+        Instances = new Queue<GameObject>();
+
+        GameObject startingInstance = Instantiate(StartingPlatform, new Vector3(0, -4, 10), Quaternion.identity);
+        Instances.Enqueue(startingInstance);
+    }
+
+    private void OnDestroy()
+    {
+        DestroyAllPlatforms();
+    }
+
+    private void DestroyAllPlatforms()
+    {
         if (Instances != null)
         {
             while (Instances.Count != 0)
@@ -51,11 +67,5 @@ public class SlopeGameManager : MonoBehaviour
                     Destroy(i);
             }
         }
-
-        PlatformsCleared = 0;
-        Instances = new Queue<GameObject>();
-
-        GameObject startingInstance = Instantiate(StartingPlatform, new Vector3(0, -4, 10), Quaternion.identity);
-        Instances.Enqueue(startingInstance);
     }
 }
