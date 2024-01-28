@@ -664,7 +664,7 @@ MonoBehaviour:
   - {fileID: 1999885471}
   - {fileID: 955660197}
   BulletSpeed: 8
-  BulletInterval: 0.3
+  BulletInterval: 0.5
   ForwardMoveSpeed: 2
   LateralMoveSpeed: 3
 --- !u!1 &1110561605
