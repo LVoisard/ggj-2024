@@ -62,10 +62,7 @@ public class Car : MonoBehaviour
             smoke.enableEmission = a > 0.25f;
         }
 
-        if (a > 0.25f)
-            driftSound.volume = Mathf.SmoothStep(0, 0.15f, a / 0.15f);
-        else
-            driftSound.volume = 0;
+        driftSound.volume = Mathf.SmoothStep(0, 0.15f, (a - 0.25f) / 0.15f);
 
     }
 
@@ -73,8 +70,6 @@ public class Car : MonoBehaviour
     void FixedUpdate()
     {
         // Rotate the car left/right
-
-
         if (!stopCar)
         {
             transform.rotation *= Quaternion.AngleAxis(rotationInput * steeringSpeed, Vector3.up);
