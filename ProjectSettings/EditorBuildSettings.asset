@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Endless Driver.unity
     guid: bdbab9963b1fe59469386517cd25ff66
+  - enabled: 1
+    path: Assets/Scenes/Slope.unity
+    guid: f30daa86365d143468da2563a74cac17
   m_configObjects: {}

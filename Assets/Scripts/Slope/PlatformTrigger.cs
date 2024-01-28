@@ -15,7 +15,7 @@ public class PlatformTrigger : MonoBehaviour
 
         Vector3 pos = new Vector3(0, transform.position.y - (15 + platforms), transform.position.z + (25+ platforms));
 
-        SlopeGameManager.Instance.Instances.Enqueue(Instantiate(randomPrefab, pos, Quaternion.identity));
+        SlopeGameManager.Instance.Instances.Enqueue(Instantiate(randomPrefab, pos, Quaternion.identity, SlopeGameManager.Instance.transform));
         Instantiate(SlopeGameManager.Instance.Buildings[0], pos, Quaternion.identity, transform.parent.parent);
     }
 

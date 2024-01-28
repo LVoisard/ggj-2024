@@ -44,7 +44,7 @@ public class TrackManager : MonoBehaviour
         scoreText.text = $"Score: {score}";
         car.IncrementMaxSpeed(score);
 
-        EndlessRunnerTrack track = Instantiate(tracksPrefabs[trackId]);
+        EndlessRunnerTrack track = Instantiate(tracksPrefabs[trackId], transform);
         track.transform.rotation = latest.nextTrackPosition.rotation;
         Vector3 offset = track.transform.position - track.startTrackPosition.position;
         track.transform.position = latest.nextTrackPosition.position + offset;

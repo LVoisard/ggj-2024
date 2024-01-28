@@ -10,6 +10,7 @@ public enum TrackType
 
 public class EndlessRunnerTrack : MonoBehaviour
 {
+    private bool entered = false;
     public TrackType trackType;
     public Transform nextTrackPosition;
     public Transform startTrackPosition;
@@ -18,6 +19,9 @@ public class EndlessRunnerTrack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        TrackManager.Instance.SpawnNextTrack(this);
+        if(!entered)
+            TrackManager.Instance.SpawnNextTrack(this);
+        
+        entered = true;
     }
 }
