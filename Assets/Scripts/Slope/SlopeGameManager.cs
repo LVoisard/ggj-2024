@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,11 +26,36 @@ public class SlopeGameManager : MonoBehaviour
     public Queue<GameObject> Instances;
     public GameObject StartingPlatform;
 
+    public TMPro.TMP_Text Text;
+
     public int PlatformsCleared = 0;
 
     private void Start()
     {
+        SetupNewGame();
+    }
+
+    private void Update()
+    {
+        Text.text = "SCORE: " + PlatformsCleared;
+    }
+
+    public void SetupNewGame()
+    {
+        if (Instances != null)
+        {
+            while (Instances.Count != 0)
+            {
+                GameObject i = Instances.Dequeue();
+                if (i)
+                    Destroy(i);
+            }
+        }
+
+        PlatformsCleared = 0;
         Instances = new Queue<GameObject>();
-        Instances.Enqueue(StartingPlatform);
+
+        GameObject startingInstance = Instantiate(StartingPlatform, new Vector3(0, -4, 10), Quaternion.identity);
+        Instances.Enqueue(startingInstance);
     }
 }
