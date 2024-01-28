@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class ContentLoader : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class ContentLoader : MonoBehaviour
 
     [SerializeField] private RectTransform contentPanelTransform;
 
+
+    [SerializeField] private VideoClip[] tiktoks;
+    private List<int> tiktokScrollOrder = new List<int>();
+    [SerializeField] private VideoPlayer tikTokScreen;
 
     [SerializeField] private RenderTexture texture;
     [SerializeField] private int nbOfGames = 0;
@@ -26,6 +31,7 @@ public class ContentLoader : MonoBehaviour
     void Start()
     {
         scrollOrder.Add(Random.Range(1, nbOfGames + 1));
+        tiktokScrollOrder.Add(Random.Range(0, tiktoks.Length));
         scrollIndex = 0;
         LoadGame();
     }
@@ -53,7 +59,6 @@ public class ContentLoader : MonoBehaviour
     float dragAmtY = 0;
     public void OnDrag()
     {
-        print("HELLO");
         if (isScrolling) return;
         dragAmtY += mouseDelta.y;
         contentPanelTransform.anchoredPosition = new Vector2(0, dragAmtY);
@@ -85,6 +90,7 @@ public class ContentLoader : MonoBehaviour
 
     private async Task LoadGame()
     {
+        tikTokScreen.clip = tiktoks[tiktokScrollOrder[scrollIndex]];        
 
         AsyncOperation op = SceneManager.LoadSceneAsync(scrollOrder[scrollIndex], LoadSceneMode.Additive);
         while (!op.isDone)
@@ -107,15 +113,18 @@ public class ContentLoader : MonoBehaviour
         {
             if (go.GetComponent<Camera>() != null) {
                 go.GetComponent<Camera>().targetTexture = texture;
-                return;
+                break;
             }           
 
             if (go.GetComponentInChildren<Camera>() != null)
             {
                 go.GetComponentInChildren<Camera>().targetTexture = texture;
-                return;
+                break;
             }
-        }   
+        }
+
+        
+        tikTokScreen.Play();
     }
 
     private async Task UnLoadCurrentGame()
@@ -125,6 +134,9 @@ public class ContentLoader : MonoBehaviour
         {
             await Task.Yield();
         }
+
+        tikTokScreen.Stop();
+        tikTokScreen.clip = null;
     }
 
 
@@ -153,8 +165,18 @@ public class ContentLoader : MonoBehaviour
                 res = Random.Range(1, nbOfGames + 1);
             }
             scrollOrder.Add(res);
+
+            int vid = Random.Range(0, tiktoks.Length);
+            int tries = 0;
+            while (tiktokScrollOrder.Contains(vid) && tiktoks.Length >= tiktokScrollOrder.Count && tries < 100 && tiktokScrollOrder[scrollIndex - 1] == vid)
+            {
+                vid = Random.Range(0, tiktoks.Length);    
+                tries++;
+            }
+            tiktokScrollOrder.Add(vid);
         }
 
+        await LoadGame();
         contentPanelTransform.anchoredPosition = botPos;
         while (Vector2.Distance(contentPanelTransform.anchoredPosition, basePos) > 10)
         {
@@ -163,7 +185,6 @@ public class ContentLoader : MonoBehaviour
         }
         contentPanelTransform.anchoredPosition = basePos;
 
-        await LoadGame();
         isScrolling = false;
     }
 
@@ -186,6 +207,7 @@ public class ContentLoader : MonoBehaviour
         await UnLoadCurrentGame();
         scrollIndex--;
 
+        await LoadGame();
         contentPanelTransform.anchoredPosition = topPos;
         while (Vector2.Distance(contentPanelTransform.anchoredPosition, basePos) > 10)
         {
@@ -193,7 +215,6 @@ public class ContentLoader : MonoBehaviour
             await Task.Yield();
         }
         contentPanelTransform.anchoredPosition = basePos;
-        await LoadGame();
 
         isScrolling = false;
     }
