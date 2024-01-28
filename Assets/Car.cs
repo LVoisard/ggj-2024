@@ -11,6 +11,9 @@ public class Car : MonoBehaviour
     [SerializeField] private float maxSpeed = 5.0f;
 
     [SerializeField] private List<TrailRenderer> tireTracks = new List<TrailRenderer>();
+    [SerializeField] private ParticleSystem[] smokeParticles;
+
+    [SerializeField] private AudioSource driftSound;
 
     private float baseSpeed = 5.0f;
 
@@ -29,11 +32,19 @@ public class Car : MonoBehaviour
         rotationInput = Input.GetAxis("Horizontal");
 
         float angleDif = Quaternion.Angle(Quaternion.Euler(transform.forward), Quaternion.Euler(velocity.normalized));
+        float a = Mathf.SmoothStep(0, 1, angleDif);
         foreach (TrailRenderer tireTrack in tireTracks)
         {
-            float a = Mathf.SmoothStep(0, 1, angleDif);
             tireTrack.emitting = a > 0.25f;
         }
+
+        foreach (ParticleSystem smoke in smokeParticles)
+        {
+            smoke.enableEmission = a > 0.25f;
+        }
+
+        driftSound.volume = Mathf.SmoothStep(0, 0.33f, a / 0.33f);
+
     }
 
     // Update is called once per frame
