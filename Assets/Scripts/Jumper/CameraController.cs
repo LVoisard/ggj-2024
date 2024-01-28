@@ -14,7 +14,10 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        transform.position = player.transform.position + new Vector3(0,0,0);  
-
+        transform.position = player.transform.position + new Vector3(0,0,0);
+        if (nexttarget != null)
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.FromToRotation(transform.forward, (nexttarget.position - transform.position).normalized), Time.deltaTime * 3f);
+        else
+            transform.forward = Vector3.forward;
     }
 }

@@ -25,32 +25,31 @@ public class GameManager : MonoBehaviour
         PlatformsCleared = 0;
         Instances = new List<GameObject>();
 
-        GameObject startingInstance = Instantiate(StartingPlatform, new Vector3(0, 0,0), Quaternion.identity);
+        GameObject startingInstance = Instantiate(StartingPlatformPrefab, new Vector3(0, 0,0), Quaternion.identity);
         Instances.Add(startingInstance);
+        Movement mov = FindObjectOfType<Movement>();
+        mov.transform.position = startingInstance.transform.position + new Vector3(0, 5f, 0);
     }
-        private void DestroyAllPlatforms()
+
+    private void DestroyAllPlatforms()
     {
         if (Instances != null)
         {
-            int y=0;
-            while (Instances.Count != 0)
+            foreach (GameObject go in Instances) 
             {
-                GameObject i = Instances[y];
-                if (i)
-                    Destroy(i);
-                    y++;
+                Destroy(go);
             }
+            Instances.Clear();
         }
     }
     public GameObject[] Prefabs;
-    public List<GameObject> Instances;
-    public GameObject StartingPlatform;
+    public List<GameObject> Instances = new List<GameObject>();
+    public GameObject StartingPlatformPrefab;
 
     public int PlatformsCleared = 0;
 
     private void Start()
     {
-        Instances = new List<GameObject>();
-        Instances.Add(StartingPlatform);
+        SetupNewGame();
     }
 }

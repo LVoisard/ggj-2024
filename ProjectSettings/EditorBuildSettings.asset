@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Slope.unity
     guid: f30daa86365d143468da2563a74cac17
+  - enabled: 1
+    path: Assets/Scenes/Glizzy.unity
+    guid: b1985954416cd9e4f848f42ce788e64c
+  - enabled: 1
+    path: Assets/Scenes/Jumping_Puzzle.unity
+    guid: 9a9db4a10dae7a845825bf8b49518a39
   m_configObjects: {}

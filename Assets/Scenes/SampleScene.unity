@@ -749,7 +749,7 @@ MonoBehaviour:
   - {fileID: 32900000, guid: c711cac683501674aa781416734d368f, type: 3}
   tikTokScreen: {fileID: 416179593}
   texture: {fileID: 8400000, guid: 46568db3dab87064fada9c7aae1702fe, type: 2}
-  nbOfGames: 2
+  nbOfGames: 4
 --- !u!1 &288646543
 GameObject:
   m_ObjectHideFlags: 0

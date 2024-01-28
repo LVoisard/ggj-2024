@@ -33,7 +33,7 @@ public class Movement : MonoBehaviour
         }
         else{
             airTime += Time.deltaTime;
-            if(airTime > 15.0f){
+            if(airTime > 5.0f){
                 //bring back to first platform
                 //reset gamemanager platform counter
                 Die();
@@ -45,7 +45,12 @@ public class Movement : MonoBehaviour
         characterController.Move(playerVelocity * Time.deltaTime);
     }
     void Die(){
-        transform.position = Vector3.zero;
+        characterController.SimpleMove(Vector3.zero);
+
+        characterController.enabled = false;
+        transform.position = new Vector3(0, 10f, 0);
+        characterController.enabled = true;
+
         GameManager.Instance.SetupNewGame();
     }
     void Jumping(){
