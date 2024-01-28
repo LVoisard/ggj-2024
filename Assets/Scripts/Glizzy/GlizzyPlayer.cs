@@ -31,8 +31,16 @@ public class GlizzyPlayer : MonoBehaviour
         {
             if (pos.position.y < -5)
             {
-                pos.position = new Vector3(pos.position.x, 0, pos.position.z);
-                pos.gameObject.SetActive(false);
+                if (pos.gameObject.tag == "Pawn")
+                {
+                    pos.position = new Vector3(pos.position.x, 0, pos.position.z);
+                    pos.gameObject.SetActive(false);
+                }
+                else
+                {
+                    GlizzyGameManager.Instance.StartGame();
+                    pos.position = new Vector3(pos.position.x, 0, pos.position.z);
+                }
             }
         }
     }

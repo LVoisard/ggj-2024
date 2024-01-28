@@ -36,10 +36,13 @@ public class GlizzyGameManager : MonoBehaviour
     {
         Cleanup();
         Player.transform.position = Vector3.zero;
+        Player.BulletInterval = 0.5f;
 
         for (int i = 0; i < Player.transform.childCount; i++)
         {
             var go = Player.transform.GetChild(i).gameObject;
+            if (go.tag != "MainCamera")
+                go.transform.position = new Vector3(go.transform.position.x, 0, go.transform.position.z);
             go.SetActive(go.tag != "Pawn");
         }
         int division = ((TrackLength - 30) / ObstacleNum);
@@ -58,9 +61,9 @@ public class GlizzyGameManager : MonoBehaviour
 
     void Cleanup()
     {
-        for (int i = 0; i < ObstacleHolder.transform.childCount; i++)
+        foreach (Transform transform in ObstacleHolder.transform)
         {
-            Destroy(ObstacleHolder.GetChild(i).gameObject);
+            Destroy(transform.gameObject);
         }
     }
 }
