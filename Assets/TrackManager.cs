@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ public class TrackManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private Car car;
 
-    int score = -1;
+    public int score = -1;
 
     private List<EndlessRunnerTrack> spawnedTracksList = new List<EndlessRunnerTrack>();
 
@@ -33,7 +34,7 @@ public class TrackManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spawnedTracksList.Add(startingTrack);
+        RestartGame();
         //SpawnNextTrack(startingTrack);
     }
 
@@ -57,5 +58,40 @@ public class TrackManager : MonoBehaviour
             spawnedTracksList.RemoveAt(0);
             Destroy(t.gameObject);
         }
+    }
+
+    public async void RestartGame()
+    {
+        print("restarted Game");
+
+       
+        
+
+        foreach (EndlessRunnerTrack t in spawnedTracksList)
+        {
+            Destroy(t.gameObject);
+        }
+        spawnedTracksList.Clear();
+
+        EndlessRunnerTrack track = Instantiate(startingTrack, Vector3.zero, Quaternion.identity, transform);
+        spawnedTracksList.Add(track);
+        car.transform.position = Vector3.zero;
+        car.transform.rotation = Quaternion.identity;
+
+
+        score = 0;
+        scoreText.text = $"Score: {score}";
+        car.stopCar = true;
+        float time = 0;
+        while (time < 1)
+        {
+            time += Time.deltaTime;
+            await Task.Yield();
+        }
+
+        car.stopCar = false;
+
+        print("Finished");
+
     }
 }

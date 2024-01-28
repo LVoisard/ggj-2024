@@ -8,17 +8,19 @@ public class Car : MonoBehaviour
     private float baseCarSnappingForce;
     [SerializeField] private float steeringSpeed = 2;
     [SerializeField] private float acceleration = 10.0f;
-    [SerializeField] private float maxSpeed = 5.0f;
+    [SerializeField] public float maxSpeed = 5.0f;
 
     [SerializeField] private List<TrailRenderer> tireTracks = new List<TrailRenderer>();
     [SerializeField] private ParticleSystem[] smokeParticles;
 
     [SerializeField] private AudioSource driftSound;
 
-    private float baseSpeed = 5.0f;
+    public float baseSpeed = 5.0f;
 
     private Vector3 velocity = Vector3.zero;
     private float rotationInput = 0;
+
+    public bool stopCar = false;
 
     private void Start()
     {
@@ -29,6 +31,21 @@ public class Car : MonoBehaviour
 
     private void Update()
     {
+        if (stopCar)
+        {
+            foreach (TrailRenderer tireTrack in tireTracks)
+            {
+                tireTrack.emitting = false;
+            }
+
+            foreach (ParticleSystem smoke in smokeParticles)
+            {
+                smoke.enableEmission = false;
+            }
+
+            return;
+        }
+
         rotationInput = Input.GetAxis("Horizontal");
 
         float angleDif = Quaternion.Angle(Quaternion.Euler(transform.forward), Quaternion.Euler(velocity.normalized));
@@ -43,7 +60,7 @@ public class Car : MonoBehaviour
             smoke.enableEmission = a > 0.25f;
         }
 
-        driftSound.volume = Mathf.SmoothStep(0, 0.33f, a / 0.33f);
+        driftSound.volume = Mathf.SmoothStep(0, 0.15f, a / 0.15f);
 
     }
 
@@ -52,14 +69,21 @@ public class Car : MonoBehaviour
     {
         // Rotate the car left/right
 
-        transform.rotation *= Quaternion.AngleAxis(rotationInput * steeringSpeed, Vector3.up);
+
+        if (!stopCar)
+        {
+            transform.rotation *= Quaternion.AngleAxis(rotationInput * steeringSpeed, Vector3.up);
+        }
         velocity += transform.forward * acceleration * carSnappingForce * Time.deltaTime;
         velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
         // transform.position += velocity * Time.deltaTime;
 
         velocity = Vector3.Slerp(velocity, (velocity * 0.8f), Time.deltaTime);
         velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
-        transform.position += velocity * Time.deltaTime;
+        if (!stopCar)
+        {
+            transform.position += velocity * Time.deltaTime;
+        }
     }
 
     public void IncrementMaxSpeed(float amt)
