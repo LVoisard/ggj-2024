@@ -5692,6 +5692,8 @@ MonoBehaviour:
   - {fileID: 6672685688240044186}
   - {fileID: 8029435163463033882}
   driftSound: {fileID: 8580539233447923462}
+  baseSpeed: 5
+  stopCar: 0
 --- !u!65 &704195631604190164
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5752,7 +5754,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: cdeb6a09aa4ae2c40878623c2952f79a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.33
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0

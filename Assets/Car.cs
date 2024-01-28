@@ -43,6 +43,8 @@ public class Car : MonoBehaviour
                 smoke.enableEmission = false;
             }
 
+            driftSound.volume = 0;
+
             return;
         }
 
@@ -60,7 +62,10 @@ public class Car : MonoBehaviour
             smoke.enableEmission = a > 0.25f;
         }
 
-        driftSound.volume = Mathf.SmoothStep(0, 0.15f, a / 0.15f);
+        if (a > 0.25f)
+            driftSound.volume = Mathf.SmoothStep(0, 0.15f, a / 0.15f);
+        else
+            driftSound.volume = 0;
 
     }
 
