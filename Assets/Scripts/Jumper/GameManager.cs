@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
         PlatformsCleared = 0;
         Instances = new List<GameObject>();
 
-        GameObject startingInstance = Instantiate(StartingPlatformPrefab, new Vector3(0, 0,0), Quaternion.identity);
+        GameObject startingInstance = Instantiate(StartingPlatformPrefab, new Vector3(0, 0,0), Quaternion.identity, transform);
         Instances.Add(startingInstance);
         Movement mov = FindObjectOfType<Movement>();
         mov.transform.position = startingInstance.transform.position + new Vector3(0, 5f, 0);

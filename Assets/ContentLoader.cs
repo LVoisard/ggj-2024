@@ -160,18 +160,22 @@ public class ContentLoader : MonoBehaviour
         if (scrollIndex == scrollOrder.Count)
         {
             int res = Random.Range(1, nbOfGames + 1);
-            while (res == scrollOrder[scrollIndex - 1])
+            int tries = 0;
+            while (scrollOrder.Contains(res) && res == scrollOrder[scrollIndex - 1])
             {
                 res = Random.Range(1, nbOfGames + 1);
+                tries++;
+                if (tries > 100) break;
             }
             scrollOrder.Add(res);
 
             int vid = Random.Range(0, tiktoks.Length);
-            int tries = 0;
-            while (tiktokScrollOrder.Contains(vid) && tiktoks.Length >= tiktokScrollOrder.Count && tries < 100 && tiktokScrollOrder[scrollIndex - 1] == vid)
+            tries = 0;
+            while (tiktokScrollOrder.Contains(vid) && tiktokScrollOrder[scrollIndex - 1] == vid)
             {
                 vid = Random.Range(0, tiktoks.Length);    
                 tries++;
+                if (tries > 100) break;
             }
             tiktokScrollOrder.Add(vid);
         }
