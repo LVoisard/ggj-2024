@@ -63,7 +63,8 @@ public class GlizzyGameManager : MonoBehaviour
     {
         foreach (Transform transform in ObstacleHolder.transform)
         {
-            Destroy(transform.gameObject);
+            if (transform)
+                Destroy(transform.gameObject);
         }
     }
 }

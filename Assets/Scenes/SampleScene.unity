@@ -885,6 +885,7 @@ MonoBehaviour:
   - {fileID: 32900000, guid: abf4ee20201cdd04a9a21d6a3a21626a, type: 3}
   - {fileID: 32900000, guid: bacc40afa1f5b794ea68a266dc922bda, type: 3}
   - {fileID: 32900000, guid: c711cac683501674aa781416734d368f, type: 3}
+  - {fileID: 32900000, guid: 103634b51478dbf4d9b4b727297bd37b, type: 3}
   tikTokScreen: {fileID: 416179593}
   texture: {fileID: 8400000, guid: 46568db3dab87064fada9c7aae1702fe, type: 2}
   nbOfGames: 4
@@ -1425,7 +1426,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &501720712
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4204,7 +4205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a83a990a4e6554bbd31d9b64a82f0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  captionPanel: {fileID: 0}
+  captionPanel: {fileID: 501720711}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
