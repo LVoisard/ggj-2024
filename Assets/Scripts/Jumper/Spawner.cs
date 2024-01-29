@@ -39,6 +39,6 @@ private void OnTriggerEnter(Collider other)
 
     void Cleanup()
     {
-        Destroy(GameManager.Instance.Instances[GameManager.Instance.PlatformsCleared-3]);
+        Destroy(GameManager.Instance.Instances[GameManager.Instance.PlatformsCleared - Mathf.Min(GameManager.Instance.PlatformsCleared, 3)]);
     }
 }

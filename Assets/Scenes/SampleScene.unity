@@ -879,16 +879,16 @@ MonoBehaviour:
   ScrollDownButton: {fileID: 41767918}
   ScrollUpButton: {fileID: 1567612326}
   contentPanelTransform: {fileID: 1083103327}
-  tiktoks:
-  - {fileID: 32900000, guid: fc6228ece125bcd4e971880cbba2b645, type: 3}
-  - {fileID: 32900000, guid: 9e0452a021ced4d4c840d95961199ef6, type: 3}
-  - {fileID: 32900000, guid: abf4ee20201cdd04a9a21d6a3a21626a, type: 3}
-  - {fileID: 32900000, guid: bacc40afa1f5b794ea68a266dc922bda, type: 3}
-  - {fileID: 32900000, guid: c711cac683501674aa781416734d368f, type: 3}
-  - {fileID: 32900000, guid: 103634b51478dbf4d9b4b727297bd37b, type: 3}
-  - {fileID: 32900000, guid: de901f73e0e7bb947a4325c098d689d6, type: 3}
-  - {fileID: 32900000, guid: 97784a9b3af4bb64f9225c95cc2ff81d, type: 3}
-  - {fileID: 32900000, guid: 85d248aa7ff44ee40b6f54b8ca81beb5, type: 3}
+  tiktokFileNames:
+  - balls are massive.mp4
+  - Camel Chase.mp4
+  - cook.mp4
+  - cringe.mp4
+  - joe.mp4
+  - MrBeast.mp4
+  - Scary Stories p23.mp4
+  - stocks.mp4
+  - XQc.mp4
   tikTokScreen: {fileID: 416179593}
   texture: {fileID: 8400000, guid: 46568db3dab87064fada9c7aae1702fe, type: 2}
   nbOfGames: 4
@@ -1233,7 +1233,7 @@ VideoPlayer:
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 2
   m_AspectRatio: 2
-  m_DataSource: 0
+  m_DataSource: 1
   m_TimeUpdateMode: 2
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
@@ -1446,7 +1446,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0020141602, y: 0.00024414062}
+  m_AnchoredPosition: {x: -0.001953125, y: 0.00024414062}
   m_SizeDelta: {x: 529.608, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &501720713

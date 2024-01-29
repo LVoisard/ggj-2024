@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1359129082617333337}
   - component: {fileID: 4997421195596646652}
   - component: {fileID: 7126035870938590229}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 6401410362337719536}
   - component: {fileID: 5584783467288605212}
   - component: {fileID: 3462698172963199009}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,6 +358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Score: 0
   ScoreText: {fileID: 7126035870938590229}
+  Reward: 0
 --- !u!54 &7099085381944159327
 Rigidbody:
   m_ObjectHideFlags: 0

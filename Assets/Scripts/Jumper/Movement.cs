@@ -45,6 +45,7 @@ public class Movement : MonoBehaviour
         characterController.Move(playerVelocity * Time.deltaTime);
     }
     void Die(){
+        airTime = 0;
         characterController.SimpleMove(Vector3.zero);
 
         characterController.enabled = false;
